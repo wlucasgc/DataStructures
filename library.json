@@ -1,0 +1,18 @@
+{
+    "name": "DataStructures",
+    "version": "1.0.0",
+    "keywords": "data, structure, structures",
+    "description": "An Arduino library for the most common data structures.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wlucasgc/DataStructures"
+    },
+    "authors": {
+        "name": "Weber Lucas",
+        "email": "wlucasgc@gmail.com",
+        "maintainer": true
+    },
+    "frameworks": "arduino",
+    "platforms": "*",
+    "license": "MIT"
+}
