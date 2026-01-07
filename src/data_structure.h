@@ -9,6 +9,7 @@
 //=================================================================================================
 
 #include <Arduino.h>
+#include "IDataStructureCallback.h"
 
 //=================================================================================================
 // CLASS
@@ -16,26 +17,42 @@
 
 class DataStructure {
     protected:
-        DataStructure(): 
-            _onChangeCallback(nullptr) {
+        IDataStructureCallback* _callback;
+
+        DataStructure():
+            _callback(nullptr) {
         }
-        
-        void (*_onChangeCallback)();
+
+        void _executeCallback() {
+            if(this->_callback) {
+                this->_callback->execute();
+            }
+        }
 
     public:
         /**
-         * @brief Sets a callback to be invoked when the data structure changes.
+         * @brief Sets a callback object to be invoked when the data structure changes.
          * 
-         * @param callback Function pointer to be called.
+         * @param callback Reference to an object implementing IDataStructureCallback.
          * 
-         * @note Passing a null pointer disables the callback.
-         * @note The callback is triggered on operations like add, remove, clear,
-         *       or size modifications.
+         * @note The provided callback object must remain valid for the lifetime
+         *       of the data structure or until another callback is set.
+         * @note Passing a different callback replaces the previously set one.
+         * @note The callback is invoked only when a modifying operation succeeds.
          */
-
-        void onChange(void (*callback)()) {
-            this->_onChangeCallback = callback;
+        void setCallback(IDataStructureCallback& callback) {
+            this->_callback = &callback;
         };
+
+        /**
+         * @brief Removes the callback.
+         * 
+         * @note After calling this method, no callback will be invoked
+         *       on data structure modification events.
+         */
+        void clearCallback() {
+            this->_callback = nullptr;
+        }
 };
 
 //=================================================================================================
