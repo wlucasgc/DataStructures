@@ -51,9 +51,7 @@ class LinearDataStructure : public DataStructure {
                 return(false);
             }
 
-            if(this->_onChangeCallback) {
-                this->_onChangeCallback();
-            }
+            this->_executeCallback();
 
             return(true);
         }
@@ -87,9 +85,7 @@ class LinearDataStructure : public DataStructure {
                 return(false);
             }
 
-            if(this->_onChangeCallback) {
-                this->_onChangeCallback();
-            }
+            this->_executeCallback();
 
             return(true);
         }
@@ -118,9 +114,7 @@ class LinearDataStructure : public DataStructure {
                 return(false);
             }
 
-            if(this->_onChangeCallback) {
-                this->_onChangeCallback();
-            }
+            this->_executeCallback();
 
             return(true);
         }
@@ -363,9 +357,7 @@ class LinearDataStructure : public DataStructure {
                 return(true);
             }
 
-            if(this->_onChangeCallback) {
-                this->_onChangeCallback();
-            }
+            this->_executeCallback();
             
             return(true);
         }
